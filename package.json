@@ -20,5 +20,6 @@
     "test": "mocha"
   },
   "author": "Maxim Novikov <nes.8bit@yandex.ru>",
-  "license": "GPL"
+  "licence": "MIT",
+  "repository": "https://github.com/m-novikov/tzlookup"
 }
