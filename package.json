@@ -1,0 +1,21 @@
+{
+  "name": "tzlookup",
+  "version": "0.0.3",
+  "description": "TZ Lookup based on binary array with grid of 0.1",
+  "main": "tzlookup.js",
+  "devDependencies": {
+    "chai": "1.9.x",
+    "mocha": "1.17.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.yandex-team.ru/nes8bit/tzlookup"
+  },
+  "keywords": [
+    "tz",
+    "timezone",
+    "time zone"
+  ],
+  "author": "Maxim Novikov <nes.8bit@yandex.ru>",
+  "license": "GPL"
+}
