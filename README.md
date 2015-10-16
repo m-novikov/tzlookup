@@ -1,2 +1,2 @@
 # tzlookup
-NodeJS Module for timezone lookup by geo location
+NodeJS Module for timezone lookup by geo location 
