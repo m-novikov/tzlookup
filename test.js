@@ -2126,7 +2126,7 @@ test('automatically-generated', function(t) {
         var tzNameCalc = tz(lat, lon);
 
         if (tzNameExp.slice(0, 3) !== "Etc" || tzNameCalc.slice(0, 3) === "Etc") {
-            t.equal(tz(lat, lon), tzNameExp, 'should return "' + tzNameExp + '" given ' + lat + ', ' + lon);
+            t.equal(tzNameCalc, tzNameExp, 'should return "' + tzNameExp + '" given ' + lat + ', ' + lon);
         }
     });
 
