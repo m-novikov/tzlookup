@@ -70,7 +70,7 @@ def main():
     TZ.extend(TIMEZONE_INTERNATIONAL_LIST)
     TZ.sort()
 
-    with open('./data/names.json', 'w+') as out_names:
+    with open('./names.json', 'w+') as out_names:
         dump(TZ, out_names)
     print len(TZ)
 
@@ -81,7 +81,7 @@ def main():
             res.append(TZ.index(name))
         print lat
 
-    with open('./data/array', 'w+') as out_arr:
+    with open('./array', 'w+') as out_arr:
         res.tofile(out_arr)
 
     return 0
