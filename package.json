@@ -2,14 +2,17 @@
   "name": "tzlookup",
   "version": "0.1.0",
   "description": "TZ Lookup based on binary array with grid of 0.1",
-  "main": "tzlookup.js",
+  "main": "index.js",
   "devDependencies": {
-    "chai": "1.9.x",
-    "mocha": "1.17.x"
+    "tap-dot": "^1.0.0",
+    "tape": "^4.2.1"
   },
   "repository": {
     "type": "git",
-    "url": "github.yandex-team.ru/nes8bit/tzlookup"
+    "url": "https://github.com/m-novikov/tzlookup"
+  },
+  "bugs": {
+    "url": "https://github.com/m-novikov/tzlookup/issues"
   },
   "keywords": [
     "tz",
@@ -17,9 +20,11 @@
     "time zone"
   ],
   "scripts": {
-    "test": "mocha"
+    "test": "tape test.js | tap-dot"
   },
   "author": "Maxim Novikov <nes.8bit@yandex.ru>",
-  "licence": "MIT",
-  "repository": "https://github.com/m-novikov/tzlookup"
+  "contributors": [
+    "Maxim Ponomarev <maxvipon@gmail.com>"
+  ],
+  "license": "MIT"
 }
