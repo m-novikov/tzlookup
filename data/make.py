@@ -16,12 +16,30 @@ TIMEZONE_INTERNATIONAL_LIST = [
     "Etc/GMT-8",  "Etc/GMT-9",  "Etc/GMT-10", "Etc/GMT-11", "Etc/GMT-12"
 ]
 
-QUERY = "SELECT tzid \
-         FROM tz_world \
-         WHERE Intersects(GeomFromText('POINT(%(lon)s %(lat)s)'), geometry) AND ROWID IN (\
-                 SELECT pkid FROM idx_tz_world_Geometry \
-                 WHERE xmin < %(lon)s AND xmax > %(lon)s AND ymin < %(lat)s AND ymax > %(lat)s\
-         ) LIMIT 1"
+QUERY = """
+SELECT tzid
+FROM tz_world, (
+    SELECT PolyFromText('POLYGON((%(min_lon)s %(min_lat)s, %(max_lon)s %(min_lat)s, %(max_lon)s %(max_lat)s, %(min_lon)s %(max_lat)s, %(min_lon)s %(min_lat)s))') as geometry
+) as polygon
+WHERE tz_world.ROWID IN (
+    SELECT pkid
+    FROM idx_tz_world_Geometry
+    WHERE xmin <= %(min_lon)s AND
+          ymin <= %(min_lat)s AND
+          xmax >= %(max_lon)s AND
+          ymax >= %(max_lat)s
+) AND ST_Intersects(tz_world.geometry, polygon.geometry)
+"""
+
+QUERY_PRECISE = """
+SELECT tzid
+FROM tz_world, (
+    SELECT PolyFromText('POLYGON((%(min_lon)s %(min_lat)s, %(max_lon)s %(min_lat)s, %(max_lon)s %(max_lat)s, %(min_lon)s %(max_lat)s, %(min_lon)s %(min_lat)s))') as geometry
+) as polygon
+WHERE tzid IN (%(tzids)s)
+ORDER BY Area(Intersection(tz_world.geometry, polygon.geometry)) DESC
+LIMIT 1
+"""
 
 QUERY_TZID = "SELECT DISTINCT tzid FROM tz_world"
 
@@ -36,7 +54,7 @@ def drange(start, stop, step):
 def get_db(folder):
     db = sqlite3.connect(':memory:')
     db.enable_load_extension(1)
-    db.load_extension('libspatialite.so.5')
+    db.load_extension('mod_spatialite')
     db.execute('SELECT InitSpatialMetaData()')
     db.execute('CREATE VIRTUAL TABLE tz_world_tmp USING VirtualShape("%s/tz_world", CP1252, 4326)' % folder)
     db.execute('CREATE TABLE tz_world AS SELECT * FROM tz_world_tmp')
@@ -45,12 +63,38 @@ def get_db(folder):
     return db
 
 
+def build_box(lat, lon):
+    res = {}
+    if lon < 0:
+        res['min_lon'] = lon + 0.05
+        res['max_lon'] = lon - 0.05
+    else:
+        res['min_lon'] = lon - 0.05
+        res['max_lon'] = lon + 0.05
+
+    if lat < 0:
+        res['min_lat'] = lat + 0.05
+        res['max_lat'] = lat - 0.05
+    else:
+        res['min_lat'] = lat - 0.05
+        res['max_lat'] = lat + 0.05
+
+    return res
+
 
 def get_tz_name(db, lat, lon):
-    cursor = db.execute(QUERY % {'lon': lon, 'lat': lat})
-    res = cursor.fetchone()
+    bounds = build_box(lat, lon)
+    cursor = db.execute(QUERY % bounds)
+    res = cursor.fetchall()
     if res:
-        return res[0]
+        if len(res) == 1:
+            return res[0][0]
+        else:
+            tzids = ','.join(["'%s'" % tzid for tzid in res])
+            bounds['tzids'] = tzids
+            cursor = db.execute(QUERY_PRECISE % bounds)
+            res = cursor.fetchone()
+            return res[0]
     else:
         return TIMEZONE_INTERNATIONAL_LIST[int(round((180.0 + lon) / 15.0))]
 
@@ -72,14 +116,18 @@ def main():
 
     with open('./names.json', 'w+') as out_names:
         dump(TZ, out_names)
-    print len(TZ)
+    print "Total timezones %s" % len(TZ)
 
     res = array('H')
     for lat in drange(90.0, -90.0, -0.1):
         for lon in drange(180.0, -180.0, -0.1):
             name = get_tz_name(db, lat, lon)
             res.append(TZ.index(name))
-        print lat
+        percentage = (10 * (90.0 - lat) / 1801)
+        sys.stdout.write(
+            'Progress: {:7.2%} Current lat: {:6.1f}\r'.format(percentage, lat)
+        )
+        sys.stdout.flush()
 
     with open('./array', 'w+') as out_arr:
         res.tofile(out_arr)

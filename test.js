@@ -2117,7 +2117,8 @@ test('automatically-generated', function(t) {
         [  71.9566, -135.0044, 'Etc/GMT+9' ],
         [  28.7239,   27.2395, 'Africa/Cairo' ],
         [  15.9964,  149.5303, 'Etc/GMT-10' ],
-        [  75.2983,   99.6727, 'Asia/Krasnoyarsk' ]
+        [  75.2983,   99.6727, 'Asia/Krasnoyarsk' ],
+        [  51.533103, 46.034158, 'Europe/Volgograd']
     ].forEach(function (item) {
         var lat = item[0];
         var lon = item[1];

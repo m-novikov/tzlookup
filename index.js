@@ -27,7 +27,9 @@ function tzNameAt(lat, lon) {
         throw new RangeError('Coordinates is out of range');
     }
 
-    var coordIndex = 3241800 - 3600 * floor(lat * 10 + 0.5) - floor(lon * 10 + 0.5);
+    // Given the 2d array 1801 x 3601 compute coordinates using following formula
+    // 3601 * (900 - floor(lat * 10 + 0.5)) + (1800 - floor(lon * 10 + 0.5)
+    var coordIndex = 3242700 - 3601 * floor(lat * 10 + 0.5) - floor(lon * 10 + 0.5);
     var nameIndex = coordsArray[coordIndex];
 
     return names[nameIndex];
