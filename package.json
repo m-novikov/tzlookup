@@ -1,6 +1,6 @@
 {
   "name": "tzlookup",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TZ Lookup based on binary array with grid of 0.1",
   "main": "index.js",
   "devDependencies": {
