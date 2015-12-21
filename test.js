@@ -19,7 +19,8 @@ test('hand-crafted', function(t) {
         [ 21.4381, -158.0493, 'Pacific/Honolulu'],
         [ 51.0036, -114.0161, 'America/Edmonton'],
         [-16.4965,  -68.1702, 'America/La_Paz'],
-        [-31.9369,  115.8453, 'Australia/Perth']
+        [-31.9369,  115.8453, 'Australia/Perth'],
+        [-90.00,  0.0, 'Antarctica/South_Pole']
         // Need more
     ].forEach(function (item) {
         var lat = item[0];
@@ -66,9 +67,9 @@ test('handle bad type input', function(t) {
 
 test('handle bad range input', function(t) {
     [
-        [ -90,   10 ],
+        [ -91,   10 ],
         [  91,   10 ],
-        [  10, -180 ],
+        [  10, -181 ],
         [  10,  181 ],
         [  10,  NaN ],
         [ NaN,   10 ],
@@ -228,7 +229,7 @@ test('automatically-generated', function(t) {
         [  83.3732,   -1.8287, 'Etc/GMT' ],
         [ -16.3976, -144.6824, 'Etc/GMT+10' ],
         [ -78.8881,  155.5862, 'Etc/GMT-10' ],
-        [  56.7940, -134.4390, 'Etc/GMT+9' ],
+        [  56.7940, -134.4390, 'America/Sitka' ],
         [ -71.8503,  -86.6314, 'Etc/GMT+6' ],
         [  18.7113,  173.7809, 'Etc/GMT-12' ],
         [ -30.2745,  127.9174, 'Australia/Perth' ],
@@ -271,7 +272,7 @@ test('automatically-generated', function(t) {
         [  87.1261,   98.0827, 'Etc/GMT-7' ],
         [  52.1224, -162.3992, 'Etc/GMT+11' ],
         [ -57.4654, -144.8221, 'Etc/GMT+10' ],
-        [  69.5362,   20.2982, 'Etc/GMT-1' ],
+        [  69.5362,   20.2982, 'Europe/Oslo' ],
         [  43.6327,  -10.6603, 'Etc/GMT+1' ],
         [ -67.8373,  143.8463, 'Etc/GMT-10' ],
         [  64.9790,  -41.9666, 'America/Godthab' ],
@@ -303,7 +304,7 @@ test('automatically-generated', function(t) {
         [ -49.9741,  -23.5196, 'Etc/GMT+2' ],
         [ -74.8532, -178.9206, 'Etc/GMT+12' ],
         [ -74.4876, -148.6521, 'Etc/GMT+10' ],
-        [  22.4928,   90.6222, 'Etc/GMT-6' ],
+        [  22.4928,   90.6222, 'Asia/Dhaka' ],
         [ -27.8884, -126.1386, 'Etc/GMT+8' ],
         [  47.8301, -138.8469, 'Etc/GMT+9' ],
         [ -10.1766,   83.7100, 'Etc/GMT-6' ],
@@ -324,7 +325,7 @@ test('automatically-generated', function(t) {
         [   0.0683,  -42.2255, 'Etc/GMT+3' ],
         [ -18.7081, -168.5762, 'Etc/GMT+11' ],
         [   3.5566,  147.8802, 'Etc/GMT-10' ],
-        [  80.8597,  -77.3047, 'Etc/GMT+5' ],
+        [  80.8597,  -77.3047, 'America/Iqaluit' ],
         [  65.5352,   74.4143, 'Asia/Yekaterinburg' ],
         [  73.3870,   74.9842, 'Etc/GMT-5' ],
         [ -43.3577, -102.7139, 'Etc/GMT+7' ],
@@ -358,7 +359,7 @@ test('automatically-generated', function(t) {
         [ -41.8625,  105.4641, 'Etc/GMT-7' ],
         [  64.5038,  -75.8160, 'America/Iqaluit' ],
         [  61.4801,   57.7244, 'Asia/Yekaterinburg' ],
-        [  -1.2214,  100.3532, 'Etc/GMT-7' ],
+        [  -1.2214,  100.3532, 'Asia/Jakarta' ],
         [ -75.3549,  119.8456, 'Etc/GMT-8' ],
         [  24.6805, -149.5537, 'Etc/GMT+10' ],
         [  42.4884,  -12.5813, 'Etc/GMT+1' ],
@@ -368,7 +369,7 @@ test('automatically-generated', function(t) {
         [  -9.4502, -119.1367, 'Etc/GMT+8' ],
         [ -25.1877,  139.8115, 'Australia/Brisbane' ],
         [  13.6274,   99.6599, 'Asia/Bangkok' ],
-        [  79.1923,   20.0049, 'Etc/GMT-1' ],
+        [  79.1923,   20.0049, 'Arctic/Longyearbyen' ],
         [ -49.3563,  -37.2322, 'Etc/GMT+2' ],
         [  -9.6665,  -43.4782, 'America/Bahia' ],
         [  17.5016,   -8.0710, 'Africa/Nouakchott' ],
@@ -684,7 +685,7 @@ test('automatically-generated', function(t) {
         [  -8.4162,  -10.3411, 'Etc/GMT+1' ],
         [  82.8749,  103.0723, 'Etc/GMT-7' ],
         [ -51.8949,  -99.2419, 'Etc/GMT+7' ],
-        [  46.7966,  -54.2088, 'Etc/GMT+4' ],
+        [  46.7966,  -54.2088, 'America/St_Johns' ],
         [  59.3750,   40.2467, 'Europe/Moscow' ],
         [ -32.7642,  171.7136, 'Etc/GMT-11' ],
         [  -6.9124,   59.7324, 'Etc/GMT-4' ],
@@ -712,7 +713,7 @@ test('automatically-generated', function(t) {
         [  77.1166,   65.9438, 'Etc/GMT-4' ],
         [  77.0070,  -58.1725, 'America/Godthab' ],
         [  22.7183,  136.8610, 'Etc/GMT-9' ],
-        [  78.5149, -103.5002, 'Etc/GMT+7' ],
+        [  78.5149, -103.5002, 'America/Cambridge_Bay' ],
         [ -54.3852,  -24.6720, 'Etc/GMT+2' ],
         [ -23.8494,  -20.0771, 'Etc/GMT+1' ],
         [  34.0027, -155.6928, 'Etc/GMT+10' ],
@@ -1177,8 +1178,8 @@ test('automatically-generated', function(t) {
         [ -56.0490,  -29.4447, 'Etc/GMT+2' ],
         [ -73.7319,  -68.4898, 'Etc/GMT+5' ],
         [  -9.9157,  -19.8829, 'Etc/GMT+1' ],
-        [   8.5647,  -60.4838, 'Etc/GMT+4' ],
-        [  12.9959,  121.6825, 'Etc/GMT-8' ],
+        [   8.5647,  -60.4838, 'America/Caracas' ],
+        [  12.9959,  121.6825, 'Asia/Manila' ],
         [  -4.6304,  155.1870, 'Etc/GMT-10' ],
         [  53.4800,  102.6862, 'Asia/Irkutsk' ],
         [  54.4724,   35.8859, 'Europe/Moscow' ],
@@ -1339,7 +1340,7 @@ test('automatically-generated', function(t) {
         [  67.9233, -167.1054, 'Etc/GMT+11' ],
         [  49.5039,  106.2301, 'Asia/Ulaanbaatar' ],
         [  32.5627,   31.1829, 'Etc/GMT-2' ],
-        [  -0.4175,  127.2838, 'Etc/GMT-8' ],
+        [  -0.4175,  127.2838, 'Asia/Jayapura' ],
         [ -45.8369,  101.6517, 'Etc/GMT-7' ],
         [  -2.1097,   57.6494, 'Etc/GMT-4' ],
         [  47.1250,   86.2943, 'Asia/Urumqi' ],
@@ -1387,7 +1388,7 @@ test('automatically-generated', function(t) {
         [  -5.5183, -123.6722, 'Etc/GMT+8' ],
         [  -4.8307, -155.9385, 'Etc/GMT+10' ],
         [  56.1999,  114.3054, 'Asia/Irkutsk' ],
-        [  69.5784,  -98.6182, 'Etc/GMT+7' ],
+        [  69.5784,  -98.6182, 'America/Cambridge_Bay' ],
         [ -84.3373,  147.2975, 'Etc/GMT-10' ],
         [  40.6756,   -3.1529, 'Europe/Madrid' ],
         [ -71.4498,   -9.8514, 'Etc/GMT+1' ],
@@ -1621,7 +1622,7 @@ test('automatically-generated', function(t) {
         [ -16.1780,   67.2392, 'Etc/GMT-4' ],
         [  49.8186,   90.2840, 'Asia/Hovd' ],
         [ -46.7801, -100.5155, 'Etc/GMT+7' ],
-        [   7.1458,   81.9245, 'Etc/GMT-5' ],
+        [   7.1458,   81.9245, 'Asia/Colombo' ],
         [ -67.3310,  -52.5569, 'Etc/GMT+4' ],
         [ -77.2416,  138.0339, 'Etc/GMT-9' ],
         [  38.0011, -142.4358, 'Etc/GMT+9' ],
@@ -1770,7 +1771,7 @@ test('automatically-generated', function(t) {
         [ -23.6789, -154.9877, 'Etc/GMT+10' ],
         [ -11.9026,   19.1156, 'Africa/Luanda' ],
         [ -19.0649,  -52.4491, 'America/Campo_Grande' ],
-        [  50.5445,  -59.2610, 'Etc/GMT+4' ],
+        [  50.5445,  -59.2610, 'America/Blanc-Sablon' ],
         [  -4.5507,   93.6346, 'Etc/GMT-6' ],
         [ -88.0188,   41.1587, 'Etc/GMT-3' ],
         [  61.3513, -148.3128, 'America/Anchorage' ],
@@ -2041,7 +2042,7 @@ test('automatically-generated', function(t) {
         [  58.6358, -178.3768, 'Etc/GMT+12' ],
         [  19.3079,  -66.2011, 'Etc/GMT+4' ],
         [  72.6499, -142.3623, 'Etc/GMT+9' ],
-        [  45.1464,  -64.2392, 'Etc/GMT+4' ],
+        [  45.1464,  -64.2392, 'America/Halifax' ],
         [ -22.6969,   82.0516, 'Etc/GMT-5' ],
         [  14.5328,   20.0108, 'Africa/Ndjamena' ],
         [  83.3319,  152.6302, 'Etc/GMT-10' ],
@@ -2075,7 +2076,7 @@ test('automatically-generated', function(t) {
         [  -4.3070,    8.2002, 'Etc/GMT-1' ],
         [ -35.1741,   51.2478, 'Etc/GMT-3' ],
         [  41.8814, -113.9326, 'America/Denver' ],
-        [  41.5321,  129.6820, 'Etc/GMT-9' ],
+        [  41.5321,  129.6820, 'Asia/Pyongyang' ],
         [ -28.8000, -159.6561, 'Etc/GMT+11' ],
         [ -25.6553,   -9.6209, 'Etc/GMT+1' ],
         [ -78.4740,  -10.7556, 'Etc/GMT+1' ],
@@ -2126,9 +2127,7 @@ test('automatically-generated', function(t) {
 
         var tzNameCalc = tz(lat, lon);
 
-        if (tzNameExp.slice(0, 3) !== "Etc" || tzNameCalc.slice(0, 3) === "Etc") {
-            t.equal(tzNameCalc, tzNameExp, 'should return "' + tzNameExp + '" given ' + lat + ', ' + lon);
-        }
+        t.equal(tzNameCalc, tzNameExp, 'should return "' + tzNameExp + '" given ' + lat + ', ' + lon);
     });
 
     t.end();
