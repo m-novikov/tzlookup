@@ -549,7 +549,7 @@ test('automatically-generated', function(t) {
         [ -22.5594, -107.9871, 'Etc/GMT+7' ],
         [  76.9016, -138.1010, 'Etc/GMT+9' ],
         [ -81.8396,  -24.4442, 'Etc/GMT+2' ],
-        [ -52.4988,  -73.0546, 'America/Santiago' ],
+        [ -52.4988,  -73.0546, 'America/Punta_Arenas' ],
         [ -29.1779, -178.4509, 'Etc/GMT+12' ],
         [ -32.6964,  164.4804, 'Etc/GMT-11' ],
         [  37.1155, -178.7043, 'Etc/GMT+12' ],
